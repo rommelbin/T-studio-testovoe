@@ -4,6 +4,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudentGroupController;
 use App\Http\Controllers\TeacherController;
+use App\Repositories\StudentGroupeCourseWithTeacherRepository;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,4 +46,11 @@ Route::group(["prefix" => 'teacher'], function () {
     Route::put("/update/{id}", [TeacherController::class, "update"]);
     Route::delete("/delete/{id}", [TeacherController::class, "delete"]);
     Route::get("/get/{id?}", [TeacherController::class, "get"]);
+});
+
+Route::group(["prefix" => 'courseTeacher'], function () {
+    Route::post("/add", [StudentGroupeCourseWithTeacherRepository::class, "create"]);
+    Route::put("/update/{id}", [StudentGroupeCourseWithTeacherRepository::class, "update"]);
+    Route::delete("/delete/{id}", [StudentGroupeCourseWithTeacherRepository::class, "delete"]);
+    Route::get("/get/{id?}", [StudentGroupeCourseWithTeacherRepository::class, "get"]);
 });

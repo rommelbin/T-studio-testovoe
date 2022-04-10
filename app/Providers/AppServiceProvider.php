@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Interfaces\IRepository;
 use App\Interfaces\IService;
+use App\Models\Student;
+use App\Observers\StudentObserver;
 use App\Repositories\BaseRepository;
 use App\Services\BaseService;
 use Illuminate\Support\ServiceProvider;
@@ -28,6 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Student::observe(StudentObserver::class);
     }
 }

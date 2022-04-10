@@ -11,4 +11,9 @@ class Teacher extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function studentGroupeCourseWithTeacher(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(StudentGroupeCourseWithTeacher::class);
+    }
 }

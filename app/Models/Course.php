@@ -17,4 +17,10 @@ class Course extends Model
     {
         return $this->hasMany(StudentGroup::class);
     }
+
+    public function studentGroupeCourseWithTeacher(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(StudentGroupeCourseWithTeacher::class);
+    }
+
 }
