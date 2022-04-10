@@ -2,8 +2,10 @@
 declare(strict_types=1);
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
 use App\Services\StudentService;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class StudentController extends Controller
 {
@@ -13,25 +15,25 @@ class StudentController extends Controller
         $this->studentService = $studentService;
     }
 
-    public function update(Request $request, int $id)
+    public function create(StudentRequest $request)
     {
-//        TODO Request validation
-        return $this->studentService->updateModel($id, $request->all());
+        $data = $request->validated();
+        $this->studentService->createModel($data);
     }
 
-    public function delete(Request $request,int $id)
+    public function update(StudentRequest $request, int $id): Model
+    {
+        $data = $request->validated();
+        return $this->studentService->updateModel($id, $data);
+    }
+
+    public function delete(int $id)
     {
         $this->studentService->deleteModel($id);
     }
 
-    public function get(Request $request, int $id = null)
+    public function get(int $id = null): Model|Collection
     {
         return $this->studentService->getModel($id);
-    }
-
-    public function create(Request $request)
-    {
-        //        TODO Request validation
-        $this->studentService->createModel($request->all());
     }
 }
