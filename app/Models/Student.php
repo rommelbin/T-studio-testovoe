@@ -11,11 +11,12 @@ class Student extends Model
     protected $table = "students";
     protected $fillable = [
         "name",
-        "photo"
+        "photo",// Реализовать загрузку фото
+        "student_group"
     ];
 
-    public function belongsTo($related, $foreignKey = null, $ownerKey = null, $relation = null)
+    public function studentsGroup(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return StudentGroup::class;
+        return $this->belongsTo(StudentGroup::class);
     }
 }

@@ -32,7 +32,7 @@ class BaseRepository implements IRepository
 
     public function updateModel(int $id, array $data): Model
     {
-        $this->model = $this->getOne($id); // говнокод
+        $this->model = $this->getOne($id);
         $this->model->update($data);
         $this->model->save();
 

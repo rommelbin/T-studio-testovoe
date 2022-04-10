@@ -10,11 +10,15 @@ class StudentGroup extends Model
     use HasFactory;
     protected $table = "student_groups";
     protected $fillable = [
-        'group_name',
+        "group_name",
+        "course_id"
     ];
-
-    public function hasMany($related, $foreignKey = null, $localKey = null)
+    public function students(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return Student::class;
+        return $this->hasMany(Student::class);
+    }
+    public function course(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Course::class);
     }
 }
